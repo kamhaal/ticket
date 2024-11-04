@@ -4,15 +4,6 @@ The Ticketing System is a web-based tool designed to simplify and organize custo
 
 Users can create tickets, attach documents if needed, and track their progress until resolved. Agents can view, categorize, and manage tickets while staying in touch with users to keep them informed. Role-based access ensures only specific roles—like admins, agents, and users—can access certain features based on their permissions.
 
-## Table of Contents
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Non-Functional Requirements](#non-functional-requirements)
-- [Contributing](#contributing)
-- [License](#license)
-
 ---
 
 ## Features
@@ -48,7 +39,7 @@ Users can create tickets, attach documents if needed, and track their progress u
 In the following steps, you can see what the first page looks like and log in.
 
 ---
-![Ticketing System image](public/image1.png)
+![Ticketing System image](./public/image1.png)
 ![Ticketing System image](public/image2.png)
 ![Ticketing System image](public/image3.png)
 ![Ticketing System image](public/image4.png)
