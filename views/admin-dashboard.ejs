@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Welcome, <%= userName %>! (Admin Dashboard)</h2>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tickets">View Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#createUser">Create User/Agent</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <form action="/logout" method="POST" class="form-inline">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Section to create a user or agent -->
+        <div id="createUser" class="mb-5">
+            <h3>Create User/Agent <img src="logo.jpg" alt="Logo" class="logo" style="width: 40px; height: auto;"></h3>
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" name="department" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" id="role" name="role" required>
+                        <option value="agent">Agent</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+        </div>
+
+        <!-- Section to display tickets -->
+        <div id="tickets">
+            <h3>All Tickets</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tickets.forEach(ticket => { %>
+                        <tr>
+                            <td><%= ticket.id %></td>
+                            <td><%= ticket.title %></td>
+                            <td><%= ticket.description %></td>
+                            <td><%= ticket.status %></td>
+                            <td><%= new Date(ticket.created_at).toLocaleString() %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>

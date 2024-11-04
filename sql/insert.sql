@@ -1,0 +1,1 @@
+-- fyll på för admin hashedpasswoard

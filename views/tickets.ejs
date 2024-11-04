@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tickets</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="/agent-dashboard" class="btn btn-primary">Go to Dashboard</a>
+
+        <h2>All Tickets</h2>
+        <% if (tickets.length > 0) { %>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tickets.forEach(ticket => { %>
+                        <tr>
+                            <td><a href="/tickets/<%= ticket.id %>"><%= ticket.title %></a></td>
+                            <td><%= ticket.username %></td>
+                            <td><%= ticket.description %></td>
+                            <td><%= ticket.status %></td>
+                            <td><%= ticket.category %></td>
+                            <td><a href="/tickets/<%= ticket.id %>" class="btn btn-info btn-sm">View Details</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>No tickets available.</p>
+        <% } %>
+    </div>
+</body>
+</html>

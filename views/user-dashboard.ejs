@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <a class="navbar-brand" href="#">Ticketing System - User Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="/create-ticket" class="nav-link">Create a Ticket</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <form action="/logout" method="POST" class="form-inline">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+        <h1>Welcome, <%= user.username %>!</h1>
+        
+        <h2>Your Tickets</h2>
+        <% if (tickets.length > 0) { %>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Created At</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tickets.forEach(ticket => { %>
+                        <tr>
+                            <td><a href="/tickets/<%= ticket.id %>"><%= ticket.title %></a></td>
+                            <td><%= new Date(ticket.created_at).toLocaleString() %></td>
+                            <td><%= ticket.status %></td>
+                            <td><%= ticket.category %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>No tickets available.</p>
+        <% } %>
+    </div>
+</body>
+</html>

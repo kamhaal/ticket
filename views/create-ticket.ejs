@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Ticket</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Ticketing System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/create-ticket">Create New Ticket</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user-dashboard">View My Tickets</a>
+                </li>
+                <!-- Only show Admin Dashboard link if user is an admin
+                <% if (user.role === 'Admin') { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin-dashboard">Admin Dashboard</a>
+                </li>
+                <% } %> -->
+                <!-- Logout Button -->
+                <li class="nav-item">
+                    <form action="/logout" method="post" class="form-inline">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Create New Ticket</h2>
+        <form action="/create-ticket" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" class="form-control" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" class="form-control" required>
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.name %>"><%= category.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="attachment">Attach File:</label>
+                <input type="file" name="attachment" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Create Ticket</button>
+        </form>
+    </div>
+</body>
+</html>
